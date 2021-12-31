@@ -7,7 +7,7 @@
 			"INSTALL_ZSH": "false",
 			"INSTALL_NODE": "false",
 			"NODE_VERSION": "lts/*",
-			"USERNAME": "<USERNAME>",
+			"USERNAME": "${localEnv:USER}",
 			"USER_UID": "<USER_UID>",
             "TZ": "<TZ>"
 		}
