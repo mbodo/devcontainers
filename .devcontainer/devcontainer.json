@@ -43,12 +43,11 @@
 	// "postCreateCommand": "go version",
 
     // Overrides the user all operations run as inside the container.
-    "containerUser": "<USERNAME>",
+    "containerUser": "${localEnv:USER}",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
-    "remoteUser": "<USERNAME>",
+    "remoteUser": "${localEnv:USER}",
 
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,Z",
     "workspaceFolder": "/workspace"
-
 }
