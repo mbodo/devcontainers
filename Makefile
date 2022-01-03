@@ -17,7 +17,8 @@ project:
 	sed -i 's/<VARIANT>/$(VARIANT)/g' $(WORKSPACE)/$(PROJECT)/.devcontainer/devcontainer.json
 	sed -i 's/<USER_UID>/$(USER_UID)/g' $(WORKSPACE)/$(PROJECT)/.devcontainer/devcontainer.json
 	sed -i 's~<TZ>~$(TZ)~g' $(WORKSPACE)/$(PROJECT)/.devcontainer/devcontainer.json
-	devcontainer build $(WORKSPACE)/$(PROJECT)
+	BUILDAH_FORMAT=docker devcontainer build $(WORKSPACE)/$(PROJECT)
+
 
 IMAGES=$(shell podman images --format "table {{.Repository}}" | grep -i "$(PROJECT)")
 
