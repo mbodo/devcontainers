@@ -21,7 +21,7 @@ all: devcontainer-clean devcontainer-init devcontainer-build
 #TODO  devcontainer.json should be generate from devcontainer.json.template for repeatability
 devcontainer-init: 
 	$(info $(M) Executing container init for project:  $(PROJECT))
-# TODO copy devcontainer.json.template as devcontainer.json 
+	cp devcontainer.json.template devcontainer.json
 	sed -i 's/<VARIANT>/$(VARIANT)/g' devcontainer.json
 	sed -i 's/<USER_UID>/$(USER_UID)/g' devcontainer.json
 	sed -i 's~<TZ>~$(TZ)~g' devcontainer.json
@@ -34,7 +34,6 @@ IMAGES=$(shell podman images --format "table {{.Repository}}" | grep -i $(PROJEC
 
 devcontainer-clean:
 	$(info $(M) Executing clean: $(PROJECT))
-	#@echo ""
 	#@readarray <<$(IMAGES)
 	#@printf "${MAPFILE[0]}\n ${MAPFILE[1]}\n"
 	#if [[ -n "$(IMAGES)" ]]; then \
