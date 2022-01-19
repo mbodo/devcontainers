@@ -1,4 +1,6 @@
 {
+    // Description of devcontainer.json https://code.visualstudio.com/docs/remote/devcontainerjson-reference
+    // Podman VSCode settings https://opensource.com/article/21/7/vs-code-remote-containers-podman
 	"name": "Go",
 	"build": {
 		"dockerfile": "Dockerfile",
