@@ -9,7 +9,7 @@ all: template-copy
 template-copy: 
 	$(info $(M) Executing initial setup of project: $(PROJECT))
 	mkdir -p $(WORKSPACE)/$(PROJECT)
-	cp -R ${PWD}/container-templates/$(TYPE)/$(OS)/.devcontainer $(WORKSPACE)/$(PROJECT)
+	cp -R ${PWD}/container-templates/$(TYPE)/$(OS)/.build $(WORKSPACE)/$(PROJECT)
 	chmod 0744 -R $(WORKSPACE)/$(PROJECT)/
 
 help:
