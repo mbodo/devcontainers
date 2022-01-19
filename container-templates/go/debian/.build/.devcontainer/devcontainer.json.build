@@ -1,0 +1,15 @@
+{
+	"name": "Go",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"VARIANT": "<VARIANT>",
+			"INSTALL_ZSH": "false",
+			"INSTALL_NODE": "false",
+			"NODE_VERSION": "lts/*",
+			"USERNAME": "${localEnv:USER}",
+			"USER_UID": "<USER_UID>",
+            "TZ": "<TZ>"
+		}
+	}
+}
