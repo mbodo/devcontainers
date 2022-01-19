@@ -18,14 +18,14 @@ VARIANT     := 1
 
 all: devcontainer-clean devcontainer-init devcontainer-build
 
-#TODO  devcontainer.json should be generate from devcontainer.json.template for repeatability
 devcontainer-init: 
 	$(info $(M) Executing container init for project:  $(PROJECT))
-	cp devcontainer.json.template devcontainer.json
+	cp devcontainer.json.build devcontainer.json
 	sed -i 's/<VARIANT>/$(VARIANT)/g' devcontainer.json
 	sed -i 's/<USER_UID>/$(USER_UID)/g' devcontainer.json
 	sed -i 's~<TZ>~$(TZ)~g' devcontainer.json
 
+# TODO Tag after build to get latest build use 'podman image ls --sort created -n --format "table {{.Repository}}" | head -1'
 devcontainer-build:
 	$(info $(M) Executing container build for project:  $(PROJECT))
 	BUILDAH_FORMAT=docker devcontainer build ../
