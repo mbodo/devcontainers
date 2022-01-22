@@ -34,6 +34,7 @@ devcontainer-build:
 
 IMAGES=$(shell podman images --format "table {{.Repository}}" | grep -i $(PROJECT))
 
+# TODO Find parent images in history "podman history localhost/vsc-myproject-f1ea14d4488f6b223026cace5e0ac3f6-uid --format "{{.Comment}}" | sed '/^$/d' | head -1 | cut -d' ' -f2"
 devcontainer-clean:
 	$(info $(M) Executing clean: $(PROJECT))
 	#@readarray <<$(IMAGES)
