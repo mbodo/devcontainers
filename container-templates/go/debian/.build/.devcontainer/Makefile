@@ -1,14 +1,16 @@
 # Default
+# V = 0 Not verbose, V= 1 Verbose
+V = 0
+Q = $(if $(filter 1,$V),,@)
 M = $(shell printf "\033[34;1m▶\033[0m")
 
-# devcontainer.json
-# 
-# Place the custom variables for devcontainer.json at the end of section
+# Generated devcontainer.json
 USER_UID    := $(shell id -u)
 TZ          := $(shell timedatectl --property=Timezone show | cut -d '=' -f2)
 WORKSPACE   := $(basename ${PWD})/..
 PROJECT_DIR := $(shell realpath ${PWD}/../)
 PROJECT     := $(shell basename $(PROJECT_DIR))
+# Custom devcontainer.json
 VARIANT     := 1
 
 #TODO Create check for devcontainer-cli see https://stackoverflow.com/a/25668869/1025312
@@ -20,9 +22,9 @@ all: devcontainer-clean devcontainer-init devcontainer-build
 
 devcontainer-init: 
 	$(info $(M) Executing container init for project:  $(PROJECT))
-	cp devcontainer.json.build devcontainer.json
-	sed -i 's/<VARIANT>/$(VARIANT)/g' devcontainer.json
-	sed -i 's/<USER_UID>/$(USER_UID)/g' devcontainer.json
+	$Q cp devcontainer.json.build devcontainer.json; \
+	sed -i 's/<VARIANT>/$(VARIANT)/g' devcontainer.json; \
+	sed -i 's/<USER_UID>/$(USER_UID)/g' devcontainer.json; \
 	sed -i 's~<TZ>~$(TZ)~g' devcontainer.json
 
 # TODO Tag after build to get latest build use 'podman image ls --sort created -n --format "table {{.Repository}}" | head -1'
