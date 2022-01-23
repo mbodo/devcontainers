@@ -30,7 +30,11 @@ devcontainer-init:
 # TODO Tag after build to get latest build use 'podman image ls --sort created -n --format "table {{.Repository}}" | head -1'
 devcontainer-build:
 	$(info $(M) Executing container build for project:  $(PROJECT))
-	BUILDAH_FORMAT=docker devcontainer build ../
+	$Q BUILDAH_FORMAT=docker devcontainer build ../; \
+	mkdir -p ../../.devcontainer; \
+	cp devcontainer.json.container ../../.devcontainer/devcontainer.json; \
+	BUILD_IMAGE=$$(podman image ls --sort created -n --format "{{.Repository}}" | head -1); \
+	sed -i "s~<IMAGE>~$$BUILD_IMAGE~g" ../../.devcontainer/devcontainer.json
 
 IMAGES=$(shell podman images --format "table {{.Repository}}" | grep -i $(PROJECT))
 
