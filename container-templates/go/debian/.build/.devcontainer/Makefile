@@ -8,7 +8,7 @@ M = $(shell printf "\033[34;1m▶\033[0m")
 USER_UID    := $(shell id -u)
 TZ          := $(shell timedatectl --property=Timezone show | cut -d '=' -f2)
 WORKSPACE   := $(basename ${PWD})/..
-PROJECT_DIR := $(shell realpath ${PWD}/../)
+PROJECT_DIR := $(shell realpath ${PWD}/../../)
 PROJECT     := $(shell basename $(PROJECT_DIR))
 # Custom devcontainer.json
 VARIANT     := 1
